@@ -3,31 +3,26 @@ package anudip.co;
 import java.util.Scanner;
 
 public class anudip {
+	
 	public static void main(String args[]) {
-		Scanner obj=new Scanner(System.in);
-		System.out.println("enter number");
-		int x=obj.nextInt();
-	if(x<=9)
-	{
-		System.out.println("one digit number");
 		
-	}
-	else if( x<=99)
-	{
+		int i, j, rows=4;  
+		for (i = 1; i <= rows; i++)   
+		{   
+		for (j = 1; j <= i; j++)   
+		{   
+		System.out.print(j);   
 		
-		System.out.println("two digit number");
+		}
+		for (j = i-1; j >= 1; j--)  
+		{  
+		System.out.print(j);  
+		}  
+		System.out.println();
 	}
-	else if( x<=999)
-	{
-		
-		System.out.println("three digit");
-	}
-	else if( x<=9999)
-	{
-		System.out.println("four digit ");
-	}
-
 		}
 	}
 
 
+	
+	
