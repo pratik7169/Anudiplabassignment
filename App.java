@@ -1,52 +1,38 @@
-package com.anudip;
+package com.anudip.SpringAgent;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * Hello world!
- *
- */
-public class App 
+
+public class App // create class
 {
-    public static void main( String[] args )
-    {
-    	
+ private static ApplicationContext ap;
 
-    	// Save the teacher and course to the database
-    	Configuration cfg=new Configuration().configure().addAnnotatedClass(Teacher.class);
-		Configuration cfg1=new Configuration().configure().addAnnotatedClass(Course.class);
-		
-		SessionFactory sf=cfg.buildSessionFactory();  // build session factory
-		Session ss=sf.openSession();  // open session
-		Transaction t=ss.beginTransaction(); //  start transaction
-		// Create a new teacher
-    	Teacher t1= new Teacher();
-    	t1.setName("Mrunali");
-
-    	// Create a new course and set the teacher
-    	Course c1 = new Course();
-    	c1.setName("Java programming");
-    	c1.setTeacher(t1);
-    	ss.save(c1);
-    	Course c2 = new Course();
-    	c2.setName("Python programming");
-    	c2.setTeacher(t1);
-    	ss.save(c2);
-    	Course c3 = new Course();
-    	c3.setName("Angular programming");
-    	c3.setTeacher(t1);
-    	ss.save(c3);
-    	
-    
-    	ss.save(t1);
-    	ss.close();
-    	//t.commit();
-    	System.out.println("one to many ");
+public static void main( String[] args )
 
 
+{
+	  ap = new ClassPathXmlApplicationContext("config.xml");
+      AgentDao Dao=(AgentDao)ap.getBean("e");
+      
+      // Insert
+      //1st Entry
+     System.out.println(Dao.saveAgent(new Agent(1,"pratik",54000))); //save method call
+      //2nd Entry
+     System.out.println(Dao.saveAgent(new Agent(2,"deepali",74000))); //save method call
+      //3rd Entry
+     System.out.println(Dao.saveAgent(new Agent(3,"Monya",84000))); //save method call
+      
+      // update
+      //System.out.println(Dao.updateAgent(new Agent(1,"pratik",65000)));// update method call
+      
+      //Delete
+      //System.out.println(Dao.deleteAgent(new Agent(3)));// delete method call
+      
+      
+     
 
+         
+       
     }
 }
